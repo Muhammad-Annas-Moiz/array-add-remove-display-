@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Grocery List Manager</h1>
+    <div id="list-container"></div>
+    <input id="item input" type="text" placeholder="Enter item">
+    <button id="add button">Add Item</button>
+    <button id="remove button">Remove Item</button>
+    <button id="display button">Display List</button>
+
+    <script>
+        let groceryList = [];
+        
+function addItem() {
+    let itemInput = document.getElementById("item input").value;
+    if (itemInput !== "") {
+        groceryList.push(itemInput);
+        console.log(`Added ${itemInput} to the list`);
+        document.getElementById("item-input").value = "";
+    }
+}
+function removeItem() {
+    let itemInput = document.getElementById("item input").value;
+    if (itemInput !== "") {
+        let index = groceryList.indexOf(itemInput);
+        if (index !== -1) {
+            groceryList.splice(index, 1);
+            console.log(`Removed ${itemInput} from the list`);
+        } else {
+            console.log(`${itemInput} is not in the list`);
+        }
+        document.getElementById("item-input").value = "";
+    }
+}
+function displayList() {
+    let listContainer = document.getElementById("list-container");
+    listContainer.innerHTML = "";
+    groceryList.forEach((item) => {
+        let listItem = document.createElement("li");
+        listItem.textContent = item;
+        listContainer.appendChild(listItem);
+    });
+    console.log("Current list:");
+    console.log(groceryList);
+}
+
+document.getElementById("add button").addEventListener("click", addItem);
+document.getElementById("remove button").addEventListener("click", removeItem);
+document.getElementById("display button").addEventListener("click", displayList);
+    </script>
+</body>
+</html>
+</body>
+</html>
